@@ -17,8 +17,7 @@ class Contact {
     var email = ""
 
     @ColumnInfo(name = "data_nascimento") // Define como esse atributo vai ser nomeado dentro do banco
-    var dataNascimento: LocalDate? = null
+    var dataNascimento = ""
 
-    var foto: Drawable? = null
-
+    var foto = ""
 }
