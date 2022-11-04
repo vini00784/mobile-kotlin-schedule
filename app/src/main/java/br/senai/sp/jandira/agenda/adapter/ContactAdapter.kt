@@ -1,14 +1,17 @@
 package br.senai.sp.jandira.agenda.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import br.senai.sp.jandira.agenda.R
 import br.senai.sp.jandira.agenda.model.Contact
 
-class ContactAdapter(var contactsList: List<Contact>) : RecyclerView.Adapter<ContactAdapter.ContactHolder>() {
+class ContactAdapter(var contactsList: List<Contact>, var context: Context) : RecyclerView.Adapter<ContactAdapter.ContactHolder>() {
 
     fun updateContactsList(newContactList: List<Contact>) {
         this.contactsList = newContactList
@@ -29,6 +32,10 @@ class ContactAdapter(var contactsList: List<Contact>) : RecyclerView.Adapter<Con
         holder.contactPhone.text = contact.telefone
         holder.contactEmail.text = contact.email
         holder.contactNameInitial.text = contact.nome.substring(0, 1)
+
+        holder.cardViewContact.setOnClickListener {
+            Toast.makeText(context, "Código: ${contact.id}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -41,6 +48,7 @@ class ContactAdapter(var contactsList: List<Contact>) : RecyclerView.Adapter<Con
         val contactPhone: TextView = view.findViewById(R.id.contact_phone)
         val contactEmail: TextView = view.findViewById(R.id.contact_email)
         val contactNameInitial: TextView = view.findViewById(R.id.contact_name_initial)
+        val cardViewContact: CardView = view.findViewById(R.id.card_view_contact)
 
     }
 
