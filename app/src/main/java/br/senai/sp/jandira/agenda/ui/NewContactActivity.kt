@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.service.autofill.FillEventHistory
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import br.senai.sp.jandira.agenda.R
 import br.senai.sp.jandira.agenda.databinding.ActivityNewContactBinding
 import br.senai.sp.jandira.agenda.model.Contact
 import br.senai.sp.jandira.agenda.repository.ContactRepository
+import java.nio.file.Files.delete
 import java.time.LocalDate
 
 class NewContactActivity : AppCompatActivity() {
@@ -29,7 +31,9 @@ class NewContactActivity : AppCompatActivity() {
             save()
         }
 
-
+        binding.buttonDelete.setOnClickListener {
+            delete()
+        }
 
         id = intent.getIntExtra("id", 0)
 
@@ -73,5 +77,25 @@ class NewContactActivity : AppCompatActivity() {
         Toast.makeText(this, "IF: $id", Toast.LENGTH_SHORT).show()
 
         finish()
+    }
+
+    private fun delete() {
+
+        val confirmation = AlertDialog.Builder(this)
+        confirmation.setTitle("Exclusão")
+        confirmation.setMessage("Tem certeza que deseja excluir este contato?")
+
+        confirmation.setPositiveButton("Sim, por favor") { _, _ ->
+            contactRepository.delete(contact)
+            finish()
+        }
+
+        confirmation.setNegativeButton("Não") { _, _ ->
+
+        }
+
+        confirmation.show()
+
+
     }
 }
