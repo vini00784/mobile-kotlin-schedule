@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.agenda.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.autofill.FillEventHistory
@@ -23,6 +24,9 @@ class NewContactActivity : AppCompatActivity() {
 
         binding.buttonSave.setOnClickListener {
             save()
+
+            val openMainActivity = Intent(this, MainActivity::class.java)
+            startActivity(openMainActivity)
         }
     }
 
@@ -40,5 +44,7 @@ class NewContactActivity : AppCompatActivity() {
         val id = contactRepository.save(contact)
 
         Toast.makeText(this, "IF: $id", Toast.LENGTH_SHORT).show()
+
+        finish()
     }
 }
