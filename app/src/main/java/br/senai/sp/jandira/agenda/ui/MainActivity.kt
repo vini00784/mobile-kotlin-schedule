@@ -28,8 +28,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(openNewContactActivity)
         }
 
-        loadRecyclerView()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        loadRecyclerView()
     }
 
     private fun loadRecyclerView() {
