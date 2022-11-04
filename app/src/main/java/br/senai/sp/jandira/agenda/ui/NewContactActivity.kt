@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.autofill.FillEventHistory
+import android.view.View
 import android.widget.Toast
 import br.senai.sp.jandira.agenda.R
 import br.senai.sp.jandira.agenda.databinding.ActivityNewContactBinding
@@ -15,6 +16,8 @@ class NewContactActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityNewContactBinding
     lateinit var contactRepository: ContactRepository
+    lateinit var contact: Contact
+    private var id = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +27,34 @@ class NewContactActivity : AppCompatActivity() {
 
         binding.buttonSave.setOnClickListener {
             save()
-
-            val openMainActivity = Intent(this, MainActivity::class.java)
-            startActivity(openMainActivity)
         }
+
+
+
+        id = intent.getIntExtra("id", 0)
+
+        if (id > 0) {
+            binding.buttonDelete.visibility = View.VISIBLE
+            binding.buttonSave.text = "Atualizar"
+            loadContact()
+        }
+    }
+
+    private fun loadContact() {
+        contactRepository = ContactRepository(this)
+        contact = contactRepository.getContactById(id)
+
+        binding.textViewName.text = "Nome:"
+        binding.txtName.setText(contact.nome)
+
+        binding.textViewEmail.text = "Email:"
+        binding.txtEmail.setText(contact.email)
+
+        binding.textViewPhone.text = "Telefone:"
+        binding.txtPhone.setText(contact.telefone)
+
+        binding.textViewBirthDate.text = "Data de Nascimento:"
+//        binding.txtDataNascimento.setText(contact.dataNascimento)
     }
 
     private fun save() {
