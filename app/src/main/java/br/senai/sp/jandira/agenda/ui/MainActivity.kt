@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         contactRepository = ContactRepository(this)
 
         val contacts = contactRepository.getAll()
-        adapterContacts = ContactAdapter(contacts)
+        adapterContacts = ContactAdapter(contacts, this)
 
         var rvContacts = binding.rvContacts
         rvContacts.adapter = adapterContacts
