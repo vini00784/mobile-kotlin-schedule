@@ -11,7 +11,6 @@ import br.senai.sp.jandira.agenda.R
 import br.senai.sp.jandira.agenda.databinding.ActivityNewContactBinding
 import br.senai.sp.jandira.agenda.model.Contact
 import br.senai.sp.jandira.agenda.repository.ContactRepository
-import java.nio.file.Files.delete
 import java.time.LocalDate
 
 class NewContactActivity : AppCompatActivity() {
@@ -26,6 +25,7 @@ class NewContactActivity : AppCompatActivity() {
 
         binding = ActivityNewContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        contact = Contact()
 
         binding.buttonSave.setOnClickListener {
             save()
@@ -63,8 +63,6 @@ class NewContactActivity : AppCompatActivity() {
 
     private fun save() {
 
-        // Criar o objeto Contact
-        val contact = Contact()
         contact.dataNascimento = binding.txtDataNascimento.text.toString()
         contact.email = binding.txtEmail.text.toString()
         contact.nome = binding.txtName.text.toString()
@@ -72,9 +70,16 @@ class NewContactActivity : AppCompatActivity() {
 
         // Criar uma instância do repositório
         contactRepository = ContactRepository(this)
-        val id = contactRepository.save(contact)
 
-        Toast.makeText(this, "IF: $id", Toast.LENGTH_SHORT).show()
+        if (id > 0) {
+            contact.id = id
+            contactRepository.update(contact)
+
+            Toast.makeText(this, "Atualizado com sucesso", Toast.LENGTH_SHORT).show()
+        } else {
+            val id = contactRepository.save(contact)
+            Toast.makeText(this, "ID: $id", Toast.LENGTH_SHORT).show()
+        }
 
         finish()
     }
