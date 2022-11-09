@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.agenda.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import br.senai.sp.jandira.agenda.R
 import br.senai.sp.jandira.agenda.model.Contact
+import br.senai.sp.jandira.agenda.ui.NewContactActivity
 
 class ContactAdapter(var contactsList: List<Contact>, var context: Context) : RecyclerView.Adapter<ContactAdapter.ContactHolder>() {
 
@@ -34,7 +36,9 @@ class ContactAdapter(var contactsList: List<Contact>, var context: Context) : Re
         holder.contactNameInitial.text = contact.nome.substring(0, 1)
 
         holder.cardViewContact.setOnClickListener {
-            Toast.makeText(context, "Código: ${contact.id}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, NewContactActivity::class.java)
+            intent.putExtra("id", contact.id)
+            context.startActivity(intent)
         }
     }
 
