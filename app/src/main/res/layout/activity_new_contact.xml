@@ -28,11 +28,11 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintStart_toStartOf="@+id/text_view_email"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_email" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/text_view_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/text_view_birth_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Enter the birth date:"
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_email" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/text_view_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Enter the phone:"
@@ -72,8 +72,8 @@
                 android:hint="Birth Date"
                 android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintStart_toStartOf="@+id/text_view_birth_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_birth_date" />
 
             <EditText
                 android:id="@+id/txt_name"
@@ -84,11 +84,11 @@
                 android:hint="Name"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_name" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/text_view_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Enter the email:"
@@ -106,8 +106,8 @@
                 android:hint="Phone"
                 android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintStart_toStartOf="@+id/text_view_phone"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_phone" />
 
             <Button
                 android:id="@+id/button_save"
@@ -117,6 +117,17 @@
                 android:layout_marginEnd="12dp"
                 android:text="salvar"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_data_nascimento" />
+
+            <Button
+                android:id="@+id/button_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:text="excluir"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_data_nascimento" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
